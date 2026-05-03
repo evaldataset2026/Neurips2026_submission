@@ -93,7 +93,7 @@ pip install torch torchvision numpy pandas pillow
 ## Usage
 
 ```bash
-python federated_train.py
+python filename.py
 ```
 
 Accuracy logs are saved after every round:
