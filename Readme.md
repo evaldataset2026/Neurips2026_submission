@@ -72,7 +72,7 @@ BloodCellBank-Atlas/
 
 The proposed framework consists of **two stages**.
 
-## Stage 1 — Semantic-Anchor Guided Global Learning
+## Stage 1 - Semantic-Anchor Guided Global Learning
 
 Stage 1 performs collaborative federated optimization across participating clients.
 
@@ -90,17 +90,24 @@ Output:
 
 ```text
 global_model.pth
+global_accuracy.npy
 ```
 
 ---
 
-## Stage 2 — Client Personalization
+## Stage 2 - Client Personalization
 
 Each client initializes from the globally trained model.
 
 The classifier head is adapted locally while preserving the globally learned semantic representation.
 
 Stage 2 improves **local personalization** without sacrificing global performance.
+
+Output:
+
+```text
+stage2_local_accuracy.npy
+```
 
 ---
 
@@ -220,9 +227,7 @@ Outputs
 ```
 global_model.pth
 stage1_global_acc.npy
-stage1_local_acc.npy
 ```
-
 ---
 
 # Running Stage 2
@@ -235,7 +240,7 @@ Outputs
 
 ```
 personalized_model/
-local_accuracy.npy
+stage2_local_accuracy.npy
 ```
 
 ---
