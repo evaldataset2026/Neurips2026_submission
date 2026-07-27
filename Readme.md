@@ -1,118 +1,286 @@
-# Federated Learning with Personalized Heads for Blood Cell Image Classification
+# BloodCellBank-Atlas: A Benchmark for Personalized Federated Learning under Extreme Class-Disjoint Label Skew (EC-DLS)
 
-> **Note:** This file contains the demo code for SA-PFL method as part of the review process for NeurIPS2026 submission under the Evaluation & Dataset Benchmark Track. Please note that the full source code will be made publicly available upon paper acceptance. 
+> **Anonymous NeurIPS 2026 Submission (Evaluation & Datasets Track)**
 
----
+This repository contains the **anonymous implementation** accompanying the NeurIPS 2026 submission:
 
-## Overview
+> **BloodCellBank-Atlas: A Unified Benchmark for Personalized Federated Learning under Extreme Class-Disjoint Label Skew**
 
-This repository contains the implementation of a **EC-DLS federated learning** framework for image classification using a split-model architecture — a shared global backbone aggregated via FedAvg, paired with per-client personalized classification heads. The system is designed to handle non-IID data distributions across clients, supporting both Dirichlet-based heterogeneity and label-skew partitioning strategies.
+The repository includes:
 
----
+- the reference implementation of **SA-PFL (Semantic Anchor Guided Personalized Federated Learning)**,
+- sample benchmark data,
+- semantic descriptions,
+- taxonomy files,
+- benchmark partitions,
+- and scripts required to reproduce the reported experiments.
 
-## Method
-
-The framework adopts a two-component model design:
-
-- **Global Backbone** — A pretrained MobileNetV3-Large feature extractor, aggregated across all clients each round using weighted FedAvg.
-- **Personalized Head** — A lightweight linear classifier trained locally per client and never aggregated, allowing each client to specialize for its local class distribution.
-
-At each communication round:
-1. Each client receives the latest global backbone weights.
-2. Local training is performed for a fixed number of epochs.
-3. Updated backbones are sent to the server and averaged via FedAvg.
-4. Personalized heads remain on the client side throughout training.
+The complete benchmark, full dataset, codebase, and documentation will be publicly released upon acceptance.
 
 ---
 
-## Dataset
+# Overview
 
-The experiments use a custom 28-class image dataset (`blc28`) split into training and test sets. Images are resized to 224×224 and normalized using ImageNet statistics.
+BloodCellBank-Atlas is a unified benchmark for evaluating **Personalized Federated Learning (PFL)** under **Extreme Class-Disjoint Label Skew (EC-DLS)**.
+
+Unlike conventional non-IID federated benchmarks, EC-DLS simulates an extreme but clinically meaningful setting where different institutions observe **mutually exclusive subsets of blood-cell classes**. This benchmark explicitly studies the trade-off between
+
+- **Local Personalization**
+- **Global Generalization**
+
+under severe label heterogeneity.
+
+The benchmark harmonizes three blood-cell datasets under a unified taxonomy:
+
+| Dataset | Classes | Cell Types |
+|---------|---------:|------------|
+| **BLC28** | 28 | RBC + WBC + Platelets |
+| **Matek-19** | 15 | WBC |
+| **Multi-focus WBC** | 18 | WBC |
+
+Each class is additionally associated with expert-reviewed morphological semantic descriptions used by the proposed SA-PFL framework.
+
+---
+
+# Repository Structure
+
+```text
+BloodCellBank-Atlas/
+
+├── README.md
+├── requirements.txt
+├── environment.yml
+│
+├── sample_dataset/
+│
+├── semantic_descriptions.csv
+├── taxonomy.csv
+│
+├── stage1.py
+├── stage2.py
+│
+├── configs/
+│
+├── checkpoints/
+│
+└── docs/
+```
+
+---
+
+# SA-PFL Pipeline
+
+The proposed framework consists of **two stages**.
+
+## Stage 1 — Semantic-Anchor Guided Global Learning
+
+Stage 1 performs collaborative federated optimization across participating clients.
+
+The framework combines
+
+- shared MobileNetV3 backbone
+- frozen vision-language teacher
+- semantic knowledge distillation
+- FedProx regularization
+- FedAvgM server aggregation
+
+to improve **global generalization** under EC-DLS.
+
+Output:
+
+```text
+global_model.pth
+```
+
+---
+
+## Stage 2 — Client Personalization
+
+Each client initializes from the globally trained model.
+
+The classifier head is adapted locally while preserving the globally learned semantic representation.
+
+Stage 2 improves **local personalization** without sacrificing global performance.
+
+---
+
+# Dataset
+
+The repository contains a representative subset of BloodCellBank-Atlas for anonymous evaluation.
+
+The complete benchmark will be publicly released upon paper acceptance.
+
+Dataset layout:
+
+```text
+sample_dataset/
+
+train/
+
+    class_1/
+    class_2/
+    ...
+
+test/
+
+    class_1/
+    class_2/
+    ...
+```
+
+Supported formats
+
+- png
+- jpg
+- jpeg
+- tif
+- tiff
+
+Images are resized to
 
 ```
-data/
-├── blc28_train/
-│   ├── class_0/
-│   ├── class_1/
-│   └── ...
-└── blc28_test/
-    ├── class_0/
-    ├── class_1/
-    └── ...
+224 × 224
 ```
 
-Supported image formats: `.png`, `.jpg`, `.jpeg`, `.tiff`, `.tif`
+using ImageNet normalization.
 
 ---
 
-## Data Partitioning
+# Semantic Descriptions
 
-Two non-IID partitioning strategies are supported:
+Each blood-cell class is associated with
 
-| Strategy | Description |
-|---|---|
-| `label_skew` | Fully disjoint class assignment — each client holds exclusively a subset of classes |
-| `dirichlet` | Dirichlet distribution–based split with concentration parameter `α` controlling heterogeneity |
+- expert-reviewed morphological descriptions
+- standardized semantic attributes
+- unified taxonomy labels
 
----
-
-## Configuration
-
-Key hyperparameters are defined at the top of the script:
-
-| Parameter | Default | Description |
-|---|---|---|
-| `NUM_CLIENTS` | 28 | Number of federated clients |
-| `NUM_CLASSES` | 28 | Total number of output classes |
-| `ROUNDS` | 500 | Number of communication rounds |
-| `LOCAL_EPOCHS` | 5 | Local training epochs per round |
-| `BATCH_SIZE` | 32 | Mini-batch size |
-| `DIRICHLET_ALPHA` | 0.5 | Dirichlet concentration (used if `dirichlet` split) |
-| `CLIENT_SPLIT` | `label_skew` | Partitioning strategy (`label_skew` or `dirichlet`) |
-| `SEED` | 43 | Random seed for reproducibility |
+The semantic descriptions are used during Stage 1 for semantic-guided knowledge distillation.
 
 ---
 
-## Requirements
+# Benchmark Protocol
 
-- Python 3.8+
+The benchmark supports two federated settings.
+
+| Protocol | Description |
+|----------|-------------|
+| EC-DLS | Fully disjoint client label spaces |
+| Dirichlet | Conventional non-IID federated learning |
+
+For EC-DLS,
+
+- every class is assigned to exactly one client,
+- clients receive mutually exclusive class subsets,
+- all experiments are repeated over multiple random partition seeds.
+
+---
+
+# Configuration
+
+Important hyperparameters can be modified directly in the scripts.
+
+| Parameter | Default |
+|------------|---------:|
+| Communication Rounds | 500 |
+| Local Epochs | 5 |
+| Batch Size | 32 |
+| KD Temperature | 4.0 |
+| Maximum KD Weight | 0.8 |
+| FedProx μ | 2×10⁻³ |
+| FedAvgM Momentum | 0.9 |
+| Random Seed | 43 |
+
+---
+
+# Installation
+
+Create the environment
+
+```bash
+pip install -r requirements.txt
+```
+
+or
+
+```bash
+conda env create -f environment.yml
+conda activate bloodcellbank
+```
+
+---
+
+# Running Stage 1
+
+```bash
+python stage1.py
+```
+
+Outputs
+
+```
+global_model.pth
+stage1_global_acc.npy
+stage1_local_acc.npy
+```
+
+---
+
+# Running Stage 2
+
+```bash
+python stage2.py
+```
+
+Outputs
+
+```
+personalized_model/
+local_accuracy.npy
+```
+
+---
+
+# Reproducing Paper Results
+
+To reproduce the reported experiments:
+
+1. Prepare the benchmark dataset.
+2. Generate benchmark partitions.
+3. Train Stage 1.
+4. Run Stage 2 personalization.
+5. Evaluate
+
+- Local Personalization
+- Global Generalization
+
+under EC-DLS or conventional non-IID settings.
+
+Configuration files corresponding to the experiments reported in the paper are provided in the `configs/` directory.
+
+---
+
+# Reproducibility
+
+Unless otherwise specified, experiments use
+
+- Python 3.10
 - PyTorch
-- torchvision
-- NumPy
-- pandas
-- Pillow
+- MobileNetV3-Large
+- CUDA GPU
+- Random Seed = 43
 
-Install dependencies:
+The repository includes
 
-```bash
-pip install torch torchvision numpy pandas pillow
-```
-
----
-
-## Usage
-
-```bash
-python filename.py
-```
-
-Accuracy logs are saved after every round:
-
-- `client_local_acc_labelskew_nonovelty7.npy` — Per-client local test accuracy across rounds `(NUM_CLIENTS × ROUNDS)`
-- `global_acc_labelskew_nonovelty7.npy` — Global test accuracy across rounds `(ROUNDS,)`
+- deterministic partition generation,
+- fixed benchmark splits,
+- semantic descriptions,
+- unified taxonomy,
+- experiment configurations.
 
 ---
 
-## Results Logging
+# Citation
 
-Training produces two `.npy` files that can be loaded for analysis:
+This repository accompanies the anonymous NeurIPS 2026 submission.
 
-```python
-import numpy as np
-
-client_acc = np.load("client_local_acc_labelskew_nonovelty7.npy")  # shape: (28, 500)
-global_acc = np.load("global_acc_labelskew_nonovelty7.npy")         # shape: (500,)
-```
-
-
----
+The complete benchmark, source code, trained models, and documentation will be publicly released upon acceptance.
