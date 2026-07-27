@@ -67,8 +67,8 @@ metadata/
 
 dataset/
 │
-├── blc28_train/
-├── blc28_test/
+├── blc28_train.zip/
+├── blc28_test.zip/
 └── README.md
 
 configs/
