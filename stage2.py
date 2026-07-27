@@ -31,8 +31,8 @@ from torchvision.models import MobileNet_V3_Large_Weights
 
 # Dataset
 DATA_ROOT = Path(os.environ.get("DATA_ROOT", "data"))
-TRAIN_DIR = os.environ.get("TRAIN_DIR", "18class_train")
-TEST_DIR = os.environ.get("TEST_DIR", "18class_test")
+TRAIN_DIR = os.environ.get("TRAIN_DIR", "blc28_train")
+TEST_DIR = os.environ.get("TEST_DIR", "blc28_test")
 
 # Training
 TARGET_SIZE = (224, 224)
@@ -50,7 +50,7 @@ USE_DESC_TEACHER = True
 DESCRIPTION_CSV = Path(
     os.environ.get(
         "DESCRIPTION_CSV",
-        "metadata/human_descriptions.csv",
+        "metadata/semantic_descriptions.csv",
     )
 )
 KD_LAMBDA = 0.1
