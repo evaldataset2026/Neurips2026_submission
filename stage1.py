@@ -55,7 +55,7 @@ USE_DESC_TEACHER = True
 DESCRIPTION_CSV = Path(
     os.environ.get(
         "DESCRIPTION_CSV",
-        "metadata/human_descriptions.csv",
+        "metadata/semantic_descriptions.csv",
     )
 )
 CLIP_CHECKPOINT = Path(
