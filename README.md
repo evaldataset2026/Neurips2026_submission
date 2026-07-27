@@ -1,3 +1,7 @@
+## Anonymous Review Repository
+
+This repository is provided exclusively for anonymous peer review of the accompanying NeurIPS 2026 Evaluation & Datasets submission. The complete benchmark is shared to facilitate scientific evaluation during the review process. An official public release and licensing terms will follow institutional approval.
+
 # BloodCellBank-Atlas: A Benchmark for Personalized Federated Learning under Extreme Class-Disjoint Label Skew (EC-DLS)
 
 > **Anonymous NeurIPS 2026 Submission (Evaluation & Datasets Track)**
@@ -49,6 +53,7 @@ Neurips2026_submission/
 README.md
 requirements.txt
 environment.yml
+LICENSE.txt
 setup.sh
 
 stage1.py
