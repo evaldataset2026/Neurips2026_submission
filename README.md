@@ -65,10 +65,10 @@ metadata/
 ├── taxonomy.csv
 └── README.md
 
-sample_dataset/
+dataset/
 │
-├── train/
-├── test/
+├── blc28_train/
+├── blc28_test/
 └── README.md
 
 configs/
