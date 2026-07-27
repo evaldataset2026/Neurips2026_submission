@@ -5,6 +5,7 @@ The complete BloodCellBank-Atlas benchmark is provided as compressed ZIP archive
 Extract the archives before running the training scripts:
 
 ```bash
+mkdir -p data
 unzip Dataset/blc28_train.zip -d data/
 unzip Dataset/blc28_test.zip -d data/
 ```
