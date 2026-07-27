@@ -1,0 +1,16 @@
+name: bloodcellbank
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - numpy
+  - pandas
+  - pillow
+  - scikit-learn
+  - pip
+  - pip:
+      - transformers
+      - tqdm
