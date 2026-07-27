@@ -43,27 +43,51 @@ Each class is additionally associated with expert-reviewed morphological semanti
 ---
 
 # Repository Structure
-
 ```text
-BloodCellBank-Atlas/
+Neurips2026_submission/
 
-├── README.md
-├── requirements.txt
-├── environment.yml
-│
-├── sample_dataset/
+README.md
+requirements.txt
+environment.yml
+setup.sh
+
+stage1.py
+stage2.py
+
+metadata/
 │
 ├── semantic_descriptions.csv
 ├── taxonomy.csv
+└── README.md
+
+sample_dataset/
 │
-├── stage1.py
-├── stage2.py
+├── train/
+├── test/
+└── README.md
+
+configs/
 │
-├── configs/
+├── blc28/
+├── matek19/
+└── multifocus/
+
+checkpoints/
+│
+└── clip_teacher/
+
+output/
 │
 ├── checkpoints/
+├── logs/
+└── metrics/
+
+docs/
 │
-└── docs/
+├── benchmark.md
+├── dataset.md
+├── reproducibility.md
+└── taxonomy.md
 ```
 
 ---
