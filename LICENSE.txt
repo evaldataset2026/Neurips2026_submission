@@ -1,0 +1,9 @@
+BloodCellBank-Atlas
+
+This anonymous repository is provided exclusively for the purpose of anonymous peer review of the accompanying NeurIPS 2026 Evaluation & Datasets Track submission.
+
+The materials contained in this repository, including the dataset, annotations, and source code, remain the intellectual property of the authors and their respective institutions.
+
+This repository is intended solely to facilitate scientific evaluation during the review process and does not constitute a public release.
+
+An official license and public release policy will be provided following completion of the review process and institutional approval.
