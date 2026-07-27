@@ -149,7 +149,7 @@ The complete benchmark will be publicly released upon paper acceptance.
 Dataset layout:
 
 ```text
-sample_dataset/
+Dataset/
 
 train/
 
