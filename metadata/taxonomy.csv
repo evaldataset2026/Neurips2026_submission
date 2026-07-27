@@ -1,0 +1,62 @@
+Dataset,Original_Label,Unified_Label,Super_Category,Harmonization
+BLC28,Spherocyte,Spherocyte,RBC,Dataset-specific
+BLC28,Reactive Lymphocyte,Reactive Lymphocyte,WBC,Dataset-specific
+BLC28,Basophil,Basophil,WBC,Direct
+BLC28,Macrocyte,Macrocyte,RBC,Dataset-specific
+BLC28,Blast,Blast,WBC,Merged
+BLC28,Band cell,Neutrophil (Band),WBC,Renamed
+BLC28,Elliptocyte,Elliptocyte,RBC,Dataset-specific
+BLC28,Promyelocyte,Promyelocyte,WBC,Direct
+BLC28,Myelocyte,Myelocyte,WBC,Direct
+BLC28,Smudge Cell,Smudge Cell,WBC,Renamed
+BLC28,Metamyelocyte,Metamyelocyte,WBC,Direct
+BLC28,Schistocyte,Schistocyte,RBC,Dataset-specific
+BLC28,Nucleated RBCs,Nucleated RBC,RBC,Renamed
+BLC28,Lymphocyte,Lymphocyte,WBC,Merged
+BLC28,Target Cell,Target Cell,RBC,Dataset-specific
+BLC28,Sickle Cell,Sickle Cell,RBC,Dataset-specific
+BLC28,Echinocyte,Echinocyte,RBC,Dataset-specific
+BLC28,Platelet,Platelet,Platelet,Direct
+BLC28,Large platelet,Large Platelet,Platelet,Dataset-specific
+BLC28,Microcyte,Microcyte,RBC,Dataset-specific
+BLC28,Rouleaux,Rouleaux,RBC,Dataset-specific
+BLC28,Tear Drop,Tear Drop Cell,RBC,Renamed
+BLC28,Neutrophil,Neutrophil (Segmented),WBC,Renamed
+BLC28,Platelet clump,Platelet Aggregate,Platelet,Renamed
+BLC28,Eosinophil,Eosinophil,WBC,Direct
+BLC28,Normocyte,Normocyte,RBC,Dataset-specific
+BLC28,Polychromatophil,Polychromatophil,RBC,Dataset-specific
+BLC28,Monocyte,Monocyte,WBC,Direct
+Matek-19,Myeloblast,Blast,WBC,Merged
+Matek-19,Neutrophil_band,Neutrophil (Band),WBC,Renamed
+Matek-19,Neutrophil_segmented,Neutrophil (Segmented),WBC,Renamed
+Matek-19,Basophil,Basophil,WBC,Direct
+Matek-19,Erythroblast,Nucleated RBC,RBC,Renamed
+Matek-19,Promyelocyte,Promyelocyte,WBC,Direct
+Matek-19,Myelocyte,Myelocyte,WBC,Direct
+Matek-19,Metamyelocyte,Metamyelocyte,WBC,Direct
+Matek-19,Lymphocyte_atypical,Reactive Lymphocyte,WBC,Renamed
+Matek-19,Monoblast,Blast,WBC,Merged
+Matek-19,Smudge_cell,Smudge Cell,WBC,Renamed
+Matek-19,Promyelocyte_bilobled,Promyelocyte,WBC,Merged
+Matek-19,Lymphocyte_typical,Lymphocyte,WBC,Renamed
+Matek-19,Eosinophil,Eosinophil,WBC,Direct
+Matek-19,Monocyte,Monocyte,WBC,Direct
+Multi-focus WBC,immature_wbc,Immature WBC,WBC,Dataset-specific
+Multi-focus WBC,unk_wbc,Unknown WBC,WBC,Dataset-specific
+Multi-focus WBC,basophil,Basophil,WBC,Direct
+Multi-focus WBC,promyelocyte,Promyelocyte,WBC,Direct
+Multi-focus WBC,myelocyte,Myelocyte,WBC,Direct
+Multi-focus WBC,band_neutrophil,Neutrophil (Band),WBC,Renamed
+Multi-focus WBC,artifact,Artifact,Other,Dataset-specific
+Multi-focus WBC,lymphocyte,Lymphocyte,WBC,Direct
+Multi-focus WBC,n_rbc,Nucleated RBC,RBC,Renamed
+Multi-focus WBC,metamyelocyte,Metamyelocyte,WBC,Direct
+Multi-focus WBC,seg_neutrophil,Neutrophil (Segmented),WBC,Renamed
+Multi-focus WBC,blast,Blast,WBC,Direct
+Multi-focus WBC,abnormal_lymphocyte,Reactive Lymphocyte,WBC,Renamed
+Multi-focus WBC,smudge,Smudge Cell,WBC,Renamed
+Multi-focus WBC,g_plt,Large Platelet,Platelet,Renamed
+Multi-focus WBC,agg_plt,Platelet Aggregate,Platelet,Renamed
+Multi-focus WBC,monocyte,Monocyte,WBC,Direct
+Multi-focus WBC,eosinophil,Eosinophil,WBC,Direct
